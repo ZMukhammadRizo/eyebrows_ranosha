@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# Eyebrows by Ranosha
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A beautiful, modern, and responsive website for an eyebrow salon with online booking functionality. The website features a professional design with stunning animations and Google Calendar integration for appointment booking.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Responsive design that works on all devices (mobile, tablet, desktop)
+- Beautiful animations using Framer Motion
+- Smooth scrolling navigation
+- Online booking system with Google Calendar integration
+- SEO optimized with React Helmet
+- Image gallery with category filtering
+- Contact section with map integration
+- Modern UI with elegant styling using Styled Components
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- ReactJS
+- Styled Components for styling
+- Framer Motion for animations
+- React Scroll for smooth navigation
+- React Helmet for SEO optimization
+- Google OAuth/Calendar API for booking integration
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation and Setup
 
-### `npm test`
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/eyebrows-by-ranosha.git
+cd eyebrows-by-ranosha
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Install dependencies:
+```bash
+npm install
+```
 
-### `npm run build`
+3. Create a `.env` file in the root directory and add your Google OAuth Client ID:
+```
+REACT_APP_GOOGLE_CLIENT_ID=your_google_client_id
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Start the development server:
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Google Calendar Integration
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The booking system uses Google Calendar API to create appointments. To set this up:
 
-### `npm run eject`
+1. Create a project in [Google Cloud Console](https://console.cloud.google.com/)
+2. Enable the Google Calendar API
+3. Create OAuth credentials for a web application
+4. Add the Client ID to your .env file
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Deployment
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The site can be deployed using Vercel, Netlify, or any other hosting service:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Build the production version:
+```bash
+npm run build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Deploy the `build` folder to your hosting service.
 
-## Learn More
+## Customization
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Replace the placeholder images with real high-quality photos of your work
+- Update contact information and address in the Contact.js component
+- Modify service offerings and prices in the Services.js component
+- Update social media links in Header.js and Footer.js
+- Change color scheme in GlobalStyles.js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+```
+src/
+├── components/
+│   ├── Header.js
+│   ├── HeroSection.js
+│   ├── Services.js
+│   ├── Gallery.js
+│   ├── BookingForm.js
+│   ├── Contact.js
+│   └── Footer.js
+├── styles/
+│   └── GlobalStyles.js
+├── App.js
+├── index.js
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## License
 
-### Analyzing the Bundle Size
+MIT
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Credits
 
-### Making a Progressive Web App
+This project was created with React and is intended to showcase a professional eyebrow salon website with booking functionality. All placeholder images are from Unsplash.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Made with ❤️ for Eyebrows by Ranosha
