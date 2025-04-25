@@ -7,6 +7,10 @@ import SectionHeading from './SectionHeading';
 // Add a high-quality image of an eyebrow master
 const masterImage = 'https://images.unsplash.com/photo-1614583225154-5fcdda07019e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1336&q=80';
 
+// Replace with your actual bot token and chat ID
+const TELEGRAM_BOT_TOKEN = '8034833417:AAFI2o7DKWo6TYgp0NhkeLhFRV6F_3mgsmM';
+const TELEGRAM_CHAT_ID = '1210135420';
+
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -15,24 +19,76 @@ const ContactSection = () => {
     service: '',
     message: '',
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const sendToTelegram = async (data) => {
+    const text = `
+🔔 Новая заявка на бронирование!
+
+👤 Имя: ${data.name}
+📧 Email: ${data.email}
+📱 Телефон: ${data.phone}
+💇 Услуга: ${data.service}
+📝 Сообщение: ${data.message}
+    `;
+    
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: text,
+        parse_mode: 'HTML'
+      })
+    };
+    
+    try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+      return data.ok;
+    } catch (error) {
+      console.error('Error sending to Telegram:', error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Здесь будет логика отправки формы
-    console.log(formData);
-    alert('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-    });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    
+    try {
+      const success = await sendToTelegram(formData);
+      
+      if (success) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: '',
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -93,7 +149,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-          >
+          >            
             <Form onSubmit={handleSubmit}>
               <FormGroup>
                 <Label htmlFor="name">Имя</Label>
@@ -104,6 +160,7 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
               </FormGroup>
               
@@ -117,6 +174,7 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    disabled={isSubmitting}
                   />
                 </FormGroup>
                 <FormGroup>
@@ -128,6 +186,7 @@ const ContactSection = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     required
+                    disabled={isSubmitting}
                   />
                 </FormGroup>
               </FormRow>
@@ -140,12 +199,13 @@ const ContactSection = () => {
                   value={formData.service}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 >
                   <option value="">Пожалуйста, выберите...</option>
-                  <option value="premium">Премиум Оформление Бровей</option>
-                  <option value="correction">Коррекция и Окрашивание</option>
-                  <option value="lamination">Ламинирование Бровей</option>
-                  <option value="microblading">Микроблейдинг</option>
+                  <option value="Премиум Оформление Бровей">Премиум Оформление Бровей</option>
+                  <option value="Коррекция и Окрашивание">Коррекция и Окрашивание</option>
+                  <option value="Ламинирование Бровей">Ламинирование Бровей</option>
+                  <option value="Микроблейдинг">Микроблейдинг</option>
                 </Select>
               </FormGroup>
               
@@ -157,10 +217,28 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows="4"
+                  disabled={isSubmitting}
                 ></Textarea>
               </FormGroup>
               
-              <SubmitButton type="submit">Отправить запрос</SubmitButton>
+              {submitStatus === 'success' && (
+                <SuccessMessage>
+                  Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.
+                </SuccessMessage>
+              )}
+              
+              {submitStatus === 'error' && (
+                <ErrorMessage>
+                  Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.
+                </ErrorMessage>
+              )}
+              
+              <SubmitButton 
+                type="submit" 
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Отправка...' : 'Отправить запрос'}
+              </SubmitButton>
             </Form>
           </FormWrapper>
         </ContentWrapper>
@@ -371,6 +449,24 @@ const SubmitButton = styled.button`
   &:hover {
     background-color: var(--primary-dark);
   }
+`;
+
+const SuccessMessage = styled.div`
+  padding: 1rem;
+  background-color: rgba(46, 213, 115, 0.1);
+  border-left: 3px solid #2ed573;
+  color: #2ed573;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+`;
+
+const ErrorMessage = styled.div`
+  padding: 1rem;
+  background-color: rgba(255, 71, 87, 0.1);
+  border-left: 3px solid #ff4757;
+  color: #ff4757;
+  border-radius: 4px;
+  margin-bottom: 1rem;
 `;
 
 export default ContactSection; 
