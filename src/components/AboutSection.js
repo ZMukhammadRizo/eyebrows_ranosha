@@ -21,7 +21,7 @@ const AboutSection = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <AboutImage src={"https://images.squarespace-cdn.com/content/v1/5c4f6ba1e2ccd1ee6075495d/1624290388397-VSJ83OREXL749BVWIHSI/Professional+eyebrow+shaping+in+Naples%2C+FL"} alt="Наша команда экспертов по бровям за работой" />
+            <AboutImage></AboutImage>
           </ImageContainer>
           
           <TextContainer
@@ -94,9 +94,11 @@ const ImageContainer = styled(motion.div)`
   padding: 1.5rem;
 `;
 
-const AboutImage = styled.img`
+const AboutImage = styled.div`
   width: 100%;
   height: 600px;
+  background-image: url("https://images.squarespace-cdn.com/content/v1/5c4f6ba1e2ccd1ee6075495d/1624290388397-VSJ83OREXL749BVWIHSI/Professional+eyebrow+shaping+in+Naples%2C+FL");
+  background-size: cover;
   border-radius: 10px;
   position: relative;
   z-index: 2;
