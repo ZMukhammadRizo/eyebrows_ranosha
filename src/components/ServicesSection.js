@@ -22,7 +22,7 @@ const servicesData = [
     description: "Стойкое окрашивание бровей, которое подчеркнет их форму и придаст выразительность вашему взгляду.",
     price: "от 1800 ₽",
     time: "45 мин",
-    image: "https://images.unsplash.com/photo-1583320798349-56c360f9c4ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80",
+    image: "https://www.dessangeclub.ru/images/dessange-infoblock/0x0x1-item/i0cd4-brow_2.webp",
     popular: true,
   },
   {
@@ -31,7 +31,7 @@ const servicesData = [
     description: "Процедура, которая делает брови более послушными, объемными и визуально гуще.",
     price: "от 3500 ₽",
     time: "60 мин",
-    image: "https://images.unsplash.com/photo-1603145733146-ae562a55031e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+    image: "https://goldenmandarin.ru/wp-content/uploads/2021/06/3-1-e1623093652240.jpg",
     popular: true,
   },
   {
@@ -49,7 +49,7 @@ const servicesData = [
     description: "Индивидуальное обучение технике макияжа бровей для ежедневного использования.",
     price: "от 4000 ₽",
     time: "90 мин",
-    image: "https://images.unsplash.com/photo-1560577968-128c5c2870bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    image: "https://makeupreligion.ru/images/indcbrowm.png",
     popular: false,
   },
   {
@@ -58,7 +58,7 @@ const servicesData = [
     description: "Полный комплекс услуг, включающий коррекцию, окрашивание и уход за бровями.",
     price: "от 4500 ₽",
     time: "90 мин",
-    image: "https://images.unsplash.com/photo-1660863788994-63db30ceed7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=748&q=80",
+    image: "https://studio185.ru/upload/medialibrary/881/881bdc07689010312b122c8b1c0f4047.png",
     popular: false,
   },
 ];
@@ -78,7 +78,6 @@ const ServicesSection = () => {
           heading="Профессиональный уход за бровями" 
           text="Мы предлагаем широкий спектр услуг по оформлению и уходу за бровями, используя только профессиональные продукты и инновационные техники."
         />
-        
         <ServicesGrid>
           {filteredServices.map((service) => (
             <ServiceCard 
@@ -94,12 +93,14 @@ const ServicesSection = () => {
               </ServiceImageContainer>
               
               <ServiceContent>
-                <ServiceTitle>{service.title}</ServiceTitle>
-                <ServiceDescription>{service.description}</ServiceDescription>
-                <ServiceMeta>
-                  <ServicePrice>{service.price}</ServicePrice>
-                  <ServiceTime>{service.time}</ServiceTime>
-                </ServiceMeta>
+                <div>
+                  <ServiceTitle>{service.title}</ServiceTitle>
+                  <ServiceDescription>{service.description}</ServiceDescription>
+                  <ServiceMeta>
+                    <ServicePrice>{service.price}</ServicePrice>
+                    <ServiceTime>{service.time}</ServiceTime>
+                  </ServiceMeta>
+                </div>
                 <BookButton 
                   to="contact"
                   spy={true}
@@ -141,6 +142,9 @@ const ServiceCard = styled(motion.div)`
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   
   &:hover {
     transform: translateY(-5px);
@@ -173,23 +177,30 @@ const PopularTag = styled.span`
 
 const ServiceContent = styled.div`
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  gap: 1.5rem;
 `;
 
 const ServiceTitle = styled.h3`
   color: var(--secondary);
   margin-bottom: 0.5rem;
+  min-height: 2.2rem;
 `;
 
 const ServiceDescription = styled.p`
   color: var(--text);
   margin-bottom: 1rem;
   line-height: 1.6;
+  min-height: 4.8rem; /* 3 lines of text */
 `;
 
 const ServiceMeta = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 `;
 
 const ServicePrice = styled.span`
@@ -213,6 +224,7 @@ const BookButton = styled(Link)`
   border-radius: 5px;
   cursor: pointer;
   transition: var(--transition);
+  margin-top: auto;
   
   svg {
     transition: var(--transition);

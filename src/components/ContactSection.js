@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from 'react-icons/fa';
 import SectionHeading from './SectionHeading';
 
+// Add a high-quality image of an eyebrow master
+const masterImage = 'https://images.unsplash.com/photo-1614583225154-5fcdda07019e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1336&q=80';
+
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -225,6 +228,48 @@ const FormWrapper = styled(motion.div)`
   border-radius: 10px;
   box-shadow: var(--shadow);
   padding: 2rem;
+`;
+
+const MasterImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+`;
+
+const MasterImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
+const MasterImageOverlay = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: white;
+`;
+
+const MasterTitle = styled.h4`
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+`;
+
+const MasterSubtitle = styled.p`
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
 `;
 
 const Form = styled.form`

@@ -32,8 +32,8 @@ const GlobalStyles = createGlobalStyle`
     --section-padding: 6rem 0;
     
     /* Typography */
-    --font-main: 'Montserrat', sans-serif;
-    --font-accent: 'Playfair Display', serif;
+    --font-main: 'Poppins', sans-serif;
+    --font-accent: 'Cormorant Garamond', serif;
   }
 
   * {

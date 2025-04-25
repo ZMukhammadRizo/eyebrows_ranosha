@@ -14,6 +14,7 @@ const SectionHeading = ({ subheading, heading, text, alignment = 'center' }) => 
       >
         <SubheadingText>{subheading}</SubheadingText>
       </Subheading>
+      <br/>
       
       <Heading
         as={motion.h2}

@@ -84,20 +84,23 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <PrimaryButton 
-                to="contact"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ButtonContent>
-                  <span>Записаться на Прием</span>
-                  <ButtonArrow>→</ButtonArrow>
-                </ButtonContent>
-              </PrimaryButton>
+                <PrimaryButton 
+                  to="contact"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                >
+                  <ButtonContent>
+                    <span>Записаться на Прием</span>
+                    <ButtonArrow className="button-arrow">→</ButtonArrow>
+                  </ButtonContent>
+                </PrimaryButton>
+              </motion.div>
             </motion.div>
             
             <motion.div
@@ -105,17 +108,20 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
             >
-              <SecondaryButton 
-                to="services"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span>Изучить Услуги</span>
-              </SecondaryButton>
+                <SecondaryButton 
+                  to="services"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                >
+                  <span>Изучить Услуги</span>
+                </SecondaryButton>
+              </motion.div>
             </motion.div>
           </ButtonsWrapper>
           
@@ -357,7 +363,7 @@ const ButtonsWrapper = styled.div`
   }
 `;
 
-const PrimaryButton = styled(motion(Link))`
+const PrimaryButton = styled(Link)`
   background: linear-gradient(to right, var(--accent), var(--primary-dark));
   color: white;
   padding: 16px 32px;
@@ -372,6 +378,10 @@ const PrimaryButton = styled(motion(Link))`
     background: linear-gradient(to right, var(--primary-dark), var(--accent));
     color: white;
     box-shadow: var(--shadow-hover);
+    
+    .button-arrow {
+      transform: translateX(5px);
+    }
   }
 `;
 
@@ -384,13 +394,10 @@ const ButtonContent = styled.div`
 const ButtonArrow = styled.span`
   font-size: 1.2rem;
   transition: transform 0.3s ease;
-  
-  ${PrimaryButton}:hover & {
-    transform: translateX(5px);
-  }
+  display: inline-block;
 `;
 
-const SecondaryButton = styled(motion(Link))`
+const SecondaryButton = styled(Link)`
   background: transparent;
   color: var(--secondary);
   padding: 16px 32px;
