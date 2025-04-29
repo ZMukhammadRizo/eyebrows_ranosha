@@ -9,9 +9,9 @@ const AboutSection = () => {
     <StyledSection id="about">
       <div className="container">
         <SectionHeading 
-          subheading="О нас" 
-          heading="Изысканное искусство красоты бровей" 
-          text="Более 10 лет опыта и страсти в создании идеальных бровей, отражающих вашу индивидуальность."
+          subheading="About Us" 
+          heading="The Refined Art of Eyebrow Beauty" 
+          text="Over 6 years of experience and passion in creating perfect eyebrows that reflect your individuality using eco-friendly products."
         />
         
         <ContentWrapper>
@@ -21,7 +21,9 @@ const AboutSection = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <AboutImage></AboutImage>
+            <AboutImage>
+              <img src={aboutImage} alt="" />
+            </AboutImage>
           </ImageContainer>
           
           <TextContainer
@@ -30,40 +32,25 @@ const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <AboutContent>
-              <h3>Профессиональный опыт и страсть к совершенству</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-              </p>
-              <p>
-                Наша миссия - подчеркнуть естественную красоту каждого клиента, создавая индивидуальные формы бровей, которые гармонично сочетаются с чертами лица и личным стилем. Мы верим, что идеально оформленные брови могут преобразить внешность и придать лицу выразительность.
-              </p>
-              <p>
-                Наша команда состоит из сертифицированных специалистов с многолетним опытом работы, которые постоянно совершенствуют свои навыки, изучая новейшие техники и тенденции в индустрии красоты.
-              </p>
+            <AboutText>
+              <h3>Professional Experience and Passion for Excellence</h3>
+              <AboutP>
+              Beauty Salon Ranosha — Permanent Makeup & Henna Studio in Torrance, CA We specialize in natural-looking permanent makeup for brows and lips, as well as organic black henna for nails. With 6+ years of experience, we provide a halal, safe, and relaxing beauty experience. Located in sunny Los Angeles.
+              </AboutP>
+            
               
               <Stats>
                 <StatItem>
-                  <StatNumber>10+</StatNumber>
-                  <StatText>лет опыта</StatText>
+                  <StatNumber>6+</StatNumber>
+                  <StatText>years of experience</StatText>
                 </StatItem>
                 <StatItem>
-                  <StatNumber>5k+</StatNumber>
-                  <StatText>довольных клиентов</StatText>
-                </StatItem>
-                <StatItem>
-                  <StatNumber>20+</StatNumber>
-                  <StatText>наград в области красоты</StatText>
+                  <StatNumber>1k+</StatNumber>
+                  <StatText>satisfied clients</StatText>
                 </StatItem>
               </Stats>
               
-            </AboutContent>
+            </AboutText>
           </TextContainer>
         </ContentWrapper>
       </div>
@@ -74,24 +61,25 @@ const AboutSection = () => {
 // Styled Components
 const StyledSection = styled.section`
   padding: var(--section-padding);
-  background-color: white;
+  background-color: var(--light-bg);
+  overflow: hidden;
 `;
 
 const ContentWrapper = styled.div`
-  margin-top: 3rem;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+  margin-top: 2.5rem;
   
-  @media (min-width: 992px) {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 `;
 
 const ImageContainer = styled(motion.div)`
   position: relative;
-  padding: 1.5rem;
 `;
 
 const AboutImage = styled.div`
@@ -104,38 +92,34 @@ const AboutImage = styled.div`
   z-index: 2;
 `;
 
-const ImageAccent = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 80%;
-  height: 80%;
-  background-color: var(--primary-light);
-  border-radius: 10px;
-  z-index: 1;
-`;
-
 const TextContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
-const AboutContent = styled.div`
+const AboutText = styled.div`
   h3 {
+    margin-bottom: 1.2rem;
+    font-size: 3rem;
     color: var(--secondary);
-    font-size: 1.75rem;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
+    font-weight: 400;
   }
   
   p {
-    color: var(--text);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.3rem;
+    color: var(--text-light);
     line-height: 1.7;
+    font-size: 0.95rem;
   }
 `;
 
+const AboutP = styled.p`
+  margin-bottom: 1.3rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  font-size: 1.2rem !important;
+`;
 const Stats = styled.div`
   display: flex;
   gap: 2rem;

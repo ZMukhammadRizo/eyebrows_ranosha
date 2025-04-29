@@ -11,9 +11,9 @@ const Footer = () => {
       <div className="container">
         <FooterGrid>
           <FooterInfo>
-            <FooterLogo>Брови от Раноши</FooterLogo>
+            <FooterLogo>Ranosha Eyebrows</FooterLogo>
             <FooterDesc>
-              Эксклюзивные услуги по оформлению бровей премиум-класса. Наша миссия — подчеркнуть вашу естественную красоту и помочь вам чувствовать себя увереннее.
+              Exclusive premium eyebrow styling services. Our mission is to enhance your natural beauty and help you feel more confident using eco-friendly products.
             </FooterDesc>
             <SocialLinks>
               <SocialLink href="https://instagram.com" target="_blank" rel="noopener noreferrer">
@@ -29,56 +29,56 @@ const Footer = () => {
           </FooterInfo>
           
           <FooterNav>
-            <FooterHeading>Быстрые ссылки</FooterHeading>
+            <FooterHeading>Quick Links</FooterHeading>
             <FooterLinks>
-              <FooterLink to="hero" smooth={true} duration={500}>Главная</FooterLink>
-              <FooterLink to="about" smooth={true} duration={500}>О нас</FooterLink>
-              <FooterLink to="services" smooth={true} duration={500}>Услуги</FooterLink>
-              <FooterLink to="testimonials" smooth={true} duration={500}>Отзывы</FooterLink>
-              <FooterLink to="contact" smooth={true} duration={500}>Контакты</FooterLink>
+              <FooterLink to="hero" smooth={true} duration={500}>Home</FooterLink>
+              <FooterLink to="about" smooth={true} duration={500}>About Us</FooterLink>
+              <FooterLink to="services" smooth={true} duration={500}>Services</FooterLink>
+              <FooterLink to="works" smooth={true} duration={500}>Portfolio</FooterLink>
+              <FooterLink to="contact" smooth={true} duration={500}>Contact</FooterLink>
             </FooterLinks>
           </FooterNav>
           
           <FooterServices>
-            <FooterHeading>Наши услуги</FooterHeading>
+            <FooterHeading>Our Services</FooterHeading>
             <FooterLinks>
-              <FooterLinkItem>Коррекция бровей</FooterLinkItem>
-              <FooterLinkItem>Окрашивание бровей</FooterLinkItem>
-              <FooterLinkItem>Ламинирование бровей</FooterLinkItem>
-              <FooterLinkItem>Микроблейдинг</FooterLinkItem>
-              <FooterLinkItem>Индивидуальные консультации</FooterLinkItem>
+              <FooterLinkItem>Eyebrow Shaping</FooterLinkItem>
+              <FooterLinkItem>Eyebrow Tinting</FooterLinkItem>
+              <FooterLinkItem>Eyebrow Lamination</FooterLinkItem>
+              <FooterLinkItem>Microblading</FooterLinkItem>
+              <FooterLinkItem>Individual Consultations</FooterLinkItem>
             </FooterLinks>
           </FooterServices>
           
           <FooterContact>
-            <FooterHeading>Контактная информация</FooterHeading>
+            <FooterHeading>Contact Information</FooterHeading>
             <ContactLinks>
               <ContactItem>
                 <FaMapMarkerAlt />
-                <span>ул. Пушкина 123, Москва</span>
+                <span>21250 Hawthorne Blvd, Torrance, CA 90503</span>
               </ContactItem>
               <ContactItem>
                 <FaPhone />
-                <span>+7 (999) 123-4567</span>
+                <span>+1 747-306-9188</span>
               </ContactItem>
               <ContactItem>
                 <FaEnvelope />
-                <span>info@broviranosha.ru</span>
+                <span>info@ranoshaeyebrows.com</span>
               </ContactItem>
             </ContactLinks>
             <OpeningHours>
-              <OpeningHeading>Часы работы:</OpeningHeading>
-              <OpeningText>Пн-Пт: 10:00 - 20:00</OpeningText>
-              <OpeningText>Сб-Вс: 11:00 - 18:00</OpeningText>
+              <OpeningHeading>Working Hours:</OpeningHeading>
+              <OpeningText>Mon-Sat: 10:00 - 23:30</OpeningText>
+              <OpeningText>Sun: 24hours</OpeningText>
             </OpeningHours>
           </FooterContact>
         </FooterGrid>
         
         <FooterBottom>
-          <Copyright>© {year} Брови от Раноши. Все права защищены.</Copyright>
+          <Copyright> {year} Ranosha Eyebrows. All rights reserved.</Copyright>
           <BottomLinks>
-            <BottomLink href="#">Политика конфиденциальности</BottomLink>
-            <BottomLink href="#">Условия использования</BottomLink>
+            <BottomLink href="#">Privacy Policy</BottomLink>
+            <BottomLink href="#">Terms of Use</BottomLink>
           </BottomLinks>
         </FooterBottom>
       </div>

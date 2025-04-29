@@ -2,36 +2,36 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    /* Upgraded color palette */
-    --primary: #f193b1; /* Richer pink */
-    --primary-rgb: 241, 147, 177; /* RGB values of primary color for opacity */
-    --primary-light: #ffd1e0; /* Light pink for backgrounds */
-    --primary-dark: #d86c96; /* Darker pink for hover states */
-    --secondary: #7a4c70; /* Deeper mauve */
-    --secondary-light: #a77c9e; /* Lighter mauve */
-    --secondary-dark: #5a3651; /* Darker mauve for contrast */
-    --accent: #e0447c; /* More vibrant rose */
-    --dark: #232323; /* Deeper black */
-    --light: #fefefe; /* Brighter white */
-    --light-bg: #f8f5f7; /* Subtle pink-tinted background */
-    --gray: #e1e1e1; /* Light gray */
-    --text: #3a3a3a; /* Main text color */
-    --text-light: #7e7e7e; /* Secondary text color */
+    /* Minimalistic color palette */
+    --primary: #94B49F; /* Soft sage green */
+    --primary-rgb: 148, 180, 159; /* RGB values of primary color for opacity */
+    --primary-light: #ECF4F3; /* Very light sage for backgrounds */
+    --primary-dark: #789395; /* Muted teal for hover states */
+    --secondary: #40514E; /* Deep teal */
+    --secondary-light: #5C7A79; /* Lighter teal */
+    --secondary-dark: #2E383C; /* Darker teal for contrast */
+    --accent: #CEA07E; /* Warm neutral */
+    --dark: #2E383C; /* Deep charcoal black */
+    --light: #FFFFFF; /* Clean white */
+    --light-bg: #F8FAF9; /* Almost white with slight green tint */
+    --gray: #EAEAEA; /* Light gray */
+    --text: #2E383C; /* Main text color - deeper for better contrast */
+    --text-light: #6B7C7C; /* Secondary text color */
     
-    /* UI variables */
-    --radius-sm: 5px;
-    --radius-md: 10px;
-    --radius-lg: 20px;
-    --radius-xl: 30px;
+    /* UI variables - more subtle for minimalism */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
     
-    --shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
-    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
-    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.07);
     
-    --transition: all 0.3s ease;
-    --section-padding: 6rem 0;
+    --transition: all 0.25s ease;
+    --section-padding: 5rem 0;
     
-    /* Typography */
+    /* Typography - cleaner fonts for minimalism */
     --font-main: 'Poppins', sans-serif;
     --font-accent: 'Cormorant Garamond', serif;
   }
@@ -64,15 +64,19 @@ const GlobalStyles = createGlobalStyle`
   }
 
   h1 {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    letter-spacing: -0.5px;
   }
 
   h2 {
-    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 300;
   }
 
   h3 {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 400;
   }
 
   p {
@@ -92,22 +96,22 @@ const GlobalStyles = createGlobalStyle`
   }
 
   button, .button {
-    background: var(--accent);
+    background: var(--primary);
     color: var(--light);
     border: none;
-    padding: 14px 32px;
-    border-radius: var(--radius-xl);
+    padding: 12px 28px;
+    border-radius: var(--radius-md);
     font-family: var(--font-main);
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: var(--transition);
-    font-size: 1rem;
+    font-size: 0.95rem;
     box-shadow: var(--shadow);
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     
     &:hover {
-      background: var(--secondary);
-      transform: translateY(-3px);
+      background: var(--primary-dark);
+      transform: translateY(-2px);
       box-shadow: var(--shadow-hover);
     }
   }
@@ -134,6 +138,37 @@ const GlobalStyles = createGlobalStyle`
     
     body {
       font-size: 15px;
+    }
+    
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+    }
+    
+    h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    }
+    
+    h3 {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+    }
+    
+    p {
+      font-size: clamp(0.95rem, 2vw, 1rem);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    section {
+      padding: 3rem 0;
+    }
+    
+    .container {
+      width: 92%;
+    }
+    
+    button, .button {
+      padding: 10px 24px;
+      font-size: 0.9rem;
     }
   }
 `;

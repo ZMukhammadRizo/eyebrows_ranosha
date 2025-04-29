@@ -30,13 +30,13 @@ const ContactSection = () => {
 
   const sendToTelegram = async (data) => {
     const text = `
-🔔 Новая заявка на бронирование!
+ 🔔 New Booking Request!
 
-👤 Имя: ${data.name}
-📧 Email: ${data.email}
-📱 Телефон: ${data.phone}
-💇 Услуга: ${data.service}
-📝 Сообщение: ${data.message}
+ 👤 Name: ${data.name}
+ 📧 Email: ${data.email}
+ 📱 Phone: ${data.phone}
+ 💇 Service: ${data.service}
+ 📝 Message: ${data.message}
     `;
     
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -94,23 +94,23 @@ const ContactSection = () => {
   const contactInfo = [
     {
       icon: <FaMapMarkerAlt />,
-      title: 'Адрес',
-      details: ['ул. Пушкина 123', 'Москва, Россия 123456'],
+      title: 'Address',
+      details: ['21250 Hawthorne Blvd', 'Torrance, CA 90503'],
     },
     {
       icon: <FaPhone />,
-      title: 'Телефон',
-      details: ['+7 (999) 123-4567', '+7 (999) 765-4321'],
+      title: 'Phone',
+      details: ['+1 747-306-9188'],
     },
     {
       icon: <FaEnvelope />,
-      title: 'Электронная почта',
-      details: ['info@krasotabrovi.ru', 'booking@krasotabrovi.ru'],
+      title: 'Email',
+      details: ['info@ranoshaeyebrows.com', 'booking@ranoshaeyebrows.com'],
     },
     {
       icon: <FaClock />,
-      title: 'Часы работы',
-      details: ['Пн-Пт: 10:00 - 20:00', 'Сб-Вс: 11:00 - 18:00'],
+      title: 'Working Hours',
+      details: ['Mon-Sat: 10:00 - 23:30', 'Sun: 24hours'],
     },
   ];
 
@@ -118,13 +118,13 @@ const ContactSection = () => {
     <StyledSection id="contact">
       <div className="container">
         <SectionHeading
-          subheading="Свяжитесь с нами"
-          heading="Запишитесь на прием"
-          text="Заполните форму ниже, и мы свяжемся с вами для подтверждения вашей записи. Мы стремимся ответить на все запросы в течение 24 часов."
+          subheading="Contact Us"
+          heading="Book an Appointment"
+          text="Fill out the form below, and we will contact you to confirm your appointment. We strive to respond to all inquiries within 24 hours."
         />
         
         <ContentWrapper>
-          <ContactInfoWrapper>
+          <ContactInfo>
             {contactInfo.map((item, index) => (
               <ContactInfoItem
                 key={index}
@@ -142,94 +142,93 @@ const ContactSection = () => {
                 </div>
               </ContactInfoItem>
             ))}
-          </ContactInfoWrapper>
+          </ContactInfo>
           
-          <FormWrapper
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
+            style={{ width: '100%' }}
           >            
-            <Form onSubmit={handleSubmit}>
+            <ContactForm onSubmit={handleSubmit}>
               <FormGroup>
-                <Label htmlFor="name">Имя</Label>
-                <Input
+                <FormLabel htmlFor="name">Full Name</FormLabel>
+                <FormInput
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  disabled={isSubmitting}
                 />
               </FormGroup>
               
               <FormRow>
                 <FormGroup>
-                  <Label htmlFor="email">Электронная почта</Label>
-                  <Input
+                  <FormLabel htmlFor="email">Email</FormLabel>
+                  <FormInput
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    disabled={isSubmitting}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label htmlFor="phone">Телефон</Label>
-                  <Input
+                  <FormLabel htmlFor="phone">Phone</FormLabel>
+                  <FormInput
                     type="tel"
                     id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    disabled={isSubmitting}
                   />
                 </FormGroup>
               </FormRow>
               
               <FormGroup>
-                <Label htmlFor="service">Выберите услугу</Label>
-                <Select
+                <FormLabel htmlFor="service">Service</FormLabel>
+                <FormInput
+                  as="select"
                   id="service"
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
                   required
-                  disabled={isSubmitting}
                 >
-                  <option value="">Пожалуйста, выберите...</option>
-                  <option value="Премиум Оформление Бровей">Премиум Оформление Бровей</option>
-                  <option value="Коррекция и Окрашивание">Коррекция и Окрашивание</option>
-                  <option value="Ламинирование Бровей">Ламинирование Бровей</option>
-                  <option value="Микроблейдинг">Микроблейдинг</option>
-                </Select>
+                  <option value="">Select a service</option>
+                  <option value="Eyebrow Shaping">Eyebrow Shaping</option>
+                  <option value="Microblading">Microblading</option>
+                  <option value="Eyebrow Tinting">Eyebrow Tinting</option>
+                  <option value="Eyebrow Lamination">Eyebrow Lamination</option>
+                  <option value="Full Eyebrow Makeover">Full Eyebrow Makeover</option>
+                  <option value="Consultation">Consultation</option>
+                </FormInput>
               </FormGroup>
               
               <FormGroup>
-                <Label htmlFor="message">Сообщение</Label>
-                <Textarea
+                <FormLabel htmlFor="message">Message</FormLabel>
+                <FormTextarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows="4"
-                  disabled={isSubmitting}
-                ></Textarea>
+                  placeholder="Tell us about your preferences or ask any questions"
+                />
               </FormGroup>
               
               {submitStatus === 'success' && (
                 <SuccessMessage>
-                  Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.
+                  Thank you for your message! We will contact you shortly to confirm your appointment.
                 </SuccessMessage>
               )}
               
               {submitStatus === 'error' && (
                 <ErrorMessage>
-                  Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.
+                  There was an error sending your message. Please try again or contact us directly by phone.
                 </ErrorMessage>
               )}
               
@@ -237,10 +236,10 @@ const ContactSection = () => {
                 type="submit" 
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Отправка...' : 'Отправить запрос'}
+                {isSubmitting ? 'Sending...' : 'Book Appointment'}
               </SubmitButton>
-            </Form>
-          </FormWrapper>
+            </ContactForm>
+          </motion.div>
         </ContentWrapper>
       </div>
     </StyledSection>
@@ -250,7 +249,8 @@ const ContactSection = () => {
 // Styled Components
 const StyledSection = styled.section`
   padding: var(--section-padding);
-  background-color: white;
+  background-color: var(--light);
+  overflow: hidden;
 `;
 
 const ContentWrapper = styled.div`
@@ -264,30 +264,51 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const ContactInfoWrapper = styled.div`
+const ContactGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2.5rem;
+  
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+`;
+
+const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.8rem;
 `;
 
 const ContactInfoItem = styled(motion.div)`
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  padding: 1.5rem;
-  border-radius: 10px;
-  background-color: var(--light-bg);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1.6rem;
+  border-radius: var(--radius-md);
+  background: var(--light);
+  border-left: 3px solid var(--primary);
+  transition: var(--transition);
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
   }
 `;
 
 const IconWrapper = styled.div`
-  font-size: 1.5rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(var(--primary-rgb), 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--primary);
+  font-size: 1.3rem;
+  flex-shrink: 0;
 `;
 
 const InfoTitle = styled.h4`
@@ -301,65 +322,16 @@ const InfoDetail = styled.p`
   margin: 0;
 `;
 
-const FormWrapper = styled(motion.div)`
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  padding: 2rem;
-`;
-
-const MasterImageContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 200px;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 1.5rem;
-`;
-
-const MasterImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-  
-  &:hover {
-    transform: scale(1.05);
-  }
-`;
-
-const MasterImageOverlay = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  color: white;
-`;
-
-const MasterTitle = styled.h4`
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-`;
-
-const MasterSubtitle = styled.p`
-  margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.9;
-`;
-
-const Form = styled.form`
+const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem;
 `;
 
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 `;
 
 const FormRow = styled.div`
@@ -372,23 +344,24 @@ const FormRow = styled.div`
   }
 `;
 
-const Label = styled.label`
-  font-weight: 500;
+const FormLabel = styled.label`
+  font-weight: 400;
   color: var(--secondary);
+  font-size: 0.95rem;
 `;
 
-const Input = styled.input`
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--gray);
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+const FormInput = styled.input`
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--gray);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-main);
+  transition: var(--transition);
+  font-size: 0.95rem;
   
   &:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+    box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.15);
   }
   
   &:hover {
@@ -396,38 +369,20 @@ const Input = styled.input`
   }
 `;
 
-const Select = styled.select`
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--gray);
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  
-  &:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
-  }
-  
-  &:hover {
-    border-color: var(--secondary);
-  }
-`;
-
-const Textarea = styled.textarea`
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--gray);
-  border-radius: 5px;
-  font-size: 1rem;
+const FormTextarea = styled.textarea`
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--gray);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-main);
   resize: vertical;
-  transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 130px;
+  transition: var(--transition);
+  font-size: 0.95rem;
   
   &:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+    box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.15);
   }
   
   &:hover {
@@ -436,18 +391,35 @@ const Textarea = styled.textarea`
 `;
 
 const SubmitButton = styled.button`
-  background-color: var(--primary);
+  background: var(--primary);
   color: white;
   border: none;
-  padding: 1rem 1.5rem;
-  border-radius: 5px;
-  font-weight: 600;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 0.5rem;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
   
   &:hover {
-    background-color: var(--primary-dark);
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+  
+  &:disabled {
+    background: var(--gray);
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  svg {
+    font-size: 1.1rem;
   }
 `;
 

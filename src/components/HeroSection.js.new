@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
-import hero from "../assets/hero.JPG";
 
 // High-quality hero image for minimalist beauty salon
-const heroImage = hero;
+const heroImage = 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1674&q=80';
 
 const HeroSection = () => {
   return (
@@ -134,18 +133,18 @@ const HeroSection = () => {
             >
               <TrustItem>
                 <TrustDot />
-                <span>100% Natural Products</span>
+                <span>100% Eco-Friendly Products</span>
               </TrustItem>
             </motion.div>
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.0 }}
+              transition={{ duration: 0.5, delay: 1 }}
             >
               <TrustItem>
                 <TrustDot />
-                <span>Certified Specialists</span>
+                <span>Expert Stylists</span>
               </TrustItem>
             </motion.div>
           </TrustSignals>
@@ -153,44 +152,40 @@ const HeroSection = () => {
         
         <ImageContent>
           <ImageWrapper
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
             <ImageContainer>
-              <img src={heroImage} alt="Eyebrows by Ranosha" />
+              <img src={heroImage} alt="Eyebrow styling" />
               <ImageOverlay />
               <ImageGlowEffect />
             </ImageContainer>
             
             <BadgeContainer>
               <Badge
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 1.2 }}
-                whileHover={{ y: -5, scale: 1.05 }}
               >
-                <BadgeHighlight>6+</BadgeHighlight>
-                <span>Years Experience</span>
+                <BadgeHighlight>5+</BadgeHighlight>
+                <span>Years of Experience</span>
               </Badge>
               
               <Badge2
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 1.4 }}
-                whileHover={{ y: -5, scale: 1.05 }}
               >
-                <BadgeHighlight>100%</BadgeHighlight>
-                <span>Satisfaction</span>
+                <BadgeHighlight>98%</BadgeHighlight>
+                <span>Client Satisfaction</span>
               </Badge2>
+              
+              <CornerDecoration />
             </BadgeContainer>
-            
-            <CornerDecoration />
           </ImageWrapper>
         </ImageContent>
       </HeroContent>
-      
-      
     </StyledHero>
   );
 };
@@ -209,7 +204,6 @@ const StyledHero = styled.section`
   
   @media (max-width: 992px) {
     padding-top: 4rem;
-    padding-bottom: 4rem;
   }
 `;
 
@@ -219,27 +213,24 @@ const BackgroundDecoration = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(var(--primary-light) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.2;
+  background: radial-gradient(circle at 10% 20%, rgba(var(--primary-rgb), 0.03) 0%, transparent 50%);
   pointer-events: none;
 `;
 
-// Floating decorative elements
-const FloatingElement1 = styled(motion.div)`
+const BackgroundCircle1 = styled.div`
   position: absolute;
   top: 15%;
-  left: 5%;
-  width: 80px;
-  height: 80px;
-  border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
-  background: linear-gradient(135deg, var(--primary-light), rgba(224, 68, 124, 0.1));
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--primary-rgb), 0.05) 0%, transparent 70%);
   opacity: 0.6;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 `;
 
-const FloatingElement2 = styled(motion.div)`
+const BackgroundCircle2 = styled.div`
   position: absolute;
   bottom: 25%;
   left: 8%;
@@ -252,41 +243,43 @@ const FloatingElement2 = styled(motion.div)`
   z-index: 1;
 `;
 
-const FloatingElement3 = styled(motion.div)`
+const FloatingElement1 = styled(motion.div)`
   position: absolute;
   top: 20%;
   right: 15%;
   width: 60px;
   height: 60px;
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  background: linear-gradient(135deg, var(--secondary-light), rgba(224, 68, 124, 0.05));
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.1), rgba(var(--primary-rgb), 0.05));
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 1;
+`;
+
+const FloatingElement2 = styled(motion.div)`
+  position: absolute;
+  bottom: 15%;
+  right: 25%;
+  width: 80px;
+  height: 80px;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.08), rgba(var(--primary-rgb), 0.03));
   opacity: 0.5;
   pointer-events: none;
   z-index: 1;
 `;
 
-const BackgroundCircle1 = styled.div`
+const FloatingElement3 = styled(motion.div)`
   position: absolute;
-  width: 400px;
-  height: 400px;
+  top: 40%;
+  left: 10%;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: linear-gradient(to right, var(--primary-light), transparent);
-  top: -150px;
-  left: -150px;
-  z-index: 0;
-  opacity: 0.5;
-`;
-
-const BackgroundCircle2 = styled.div`
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: linear-gradient(to left, var(--primary-light), transparent);
-  bottom: -100px;
-  right: -100px;
-  z-index: 0;
-  opacity: 0.5;
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.1), rgba(var(--primary-rgb), 0.05));
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 1;
 `;
 
 const HeroContent = styled.div`
@@ -362,6 +355,40 @@ const TextContent = styled.div`
   }
 `;
 
+const AccentSpan = styled.span`
+  color: var(--primary);
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    bottom: 8px;
+    left: 0;
+    background-color: rgba(var(--primary-rgb), 0.25);
+    z-index: -1;
+  }
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  
+  @media (max-width: 992px) {
+    justify-content: center;
+  }
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    gap: 0.8rem;
+  }
+`;
+
 const PrimaryButton = styled(Link)`
   background: var(--primary);
   color: white;
@@ -388,22 +415,6 @@ const PrimaryButton = styled(Link)`
     padding: 0.9rem 1.5rem;
     font-size: 0.95rem;
     text-align: center;
-  }
-`;
-
-const ButtonsWrapper = styled.div`
-  display: flex;
-  gap: 1rem;
-  
-  @media (max-width: 992px) {
-    justify-content: center;
-  }
-  
-  @media (max-width: 480px) {
-    flex-direction: column;
-    width: 100%;
-    max-width: 280px;
-    gap: 0.8rem;
   }
 `;
 
@@ -479,16 +490,6 @@ const TrustDot = styled.span`
   border-radius: 50%;
   background-color: var(--accent);
 `;
-
-const AccentSpan = styled.span`
-  color: var(--primary);
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-`;
-
 
 const ImageContent = styled.div`
   flex: 1;
