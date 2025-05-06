@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom';
+import { FaPhone, FaWhatsapp, FaBars, FaTimes } from 'react-icons/fa';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -16,368 +18,500 @@ const Header = () => {
         setScrolled(false);
       }
     };
-
+    
     window.addEventListener('scroll', handleScroll);
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  
+  const navLinks = [
+    { name: 'Home', to: 'home' },
+    { name: 'About', to: 'about' },
+    { name: 'Services', to: 'services' },
+    { name: 'Our works', to: 'works' },
+    { name: 'Contact', to: 'contact' },
+  ];
+  
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      x: "100%",
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 40
+      }
+    },
+    open: {
+      opacity: 1,
+      x: "0%",
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 40
+      }
+    }
+  };
+  
+  const linkVariants = {
+    closed: { opacity: 0, y: 20 },
+    open: i => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        type: "spring",
+        stiffness: 300,
+        damping: 25
+      }
+    })
+  };
 
+  const handleBookNow = () => {
+    // Scroll to contact section when Book Now is clicked
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
   return (
     <StyledHeader scrolled={scrolled}>
       <div className="container">
-        <HeaderContainer>
-          <Logo 
-            as={motion.div}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+        <div className="header-content">
+          <RouterLink to="/" className="logo">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <span>Ranosha</span> Beauty Salon
+            </motion.div>
+          </RouterLink>
+          
+          <motion.nav 
+            className="desktop-nav"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h1>Ranosha Eyebrows</h1>
-          </Logo>
-          
-          <MenuToggle isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </MenuToggle>
-          
-          <NavLinks>
-            <NavItems>
+            <ul>
               {navLinks.map((link, index) => (
                 <motion.li 
                   key={index}
-                  initial={{ opacity: 0, y: -20 }}
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
                 >
-                  <NavLink
-                    to={link.to}
+                  <Link 
+                    to={link.to} 
+                    smooth={true} 
+                    duration={400} 
+                    offset={-80}
+                    activeClass="active"
                     spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    scrolled={scrolled}
                   >
-                    {link.text}
-                  </NavLink>
+                    {link.name}
+                  </Link>
                 </motion.li>
               ))}
-              <motion.li
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: navLinks.length * 0.1 }}
-              >
-                <ActionButton
-                  as={Link}
-                  to="contact"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                >
-                  Book Now
-                </ActionButton>
-              </motion.li>
-            </NavItems>
-          </NavLinks>
-        </HeaderContainer>
+            </ul>
+          </motion.nav>
+          
+          <motion.div 
+            className="header-right"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <a href="tel:+17473069188" className="phone-link">
+              <FaPhone /> +1 747-306-9188
+            </a>
+            <motion.button 
+              className="button"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              onClick={handleBookNow}
+            >
+              Book Now
+            </motion.button>
+          </motion.div>
+          
+          <div className="mobile-nav-toggle">
+            <motion.button 
+              onClick={() => setIsOpen(!isOpen)}
+              whileTap={{ scale: 0.95 }}
+            >
+              {isOpen ? <FaTimes /> : <FaBars />}
+            </motion.button>
+          </div>
+        </div>
       </div>
       
       <AnimatePresence>
         {isOpen && (
-          <MobileMenu
-            isOpen={isOpen}
-            as={motion.div}
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
+          <motion.div 
+            className="mobile-nav"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={menuVariants}
           >
-            <MobileNavItems>
-              {navLinks.map((link, index) => (
-                <motion.li 
-                  key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <NavLink
-                    to={link.to}
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    onClick={() => setIsOpen(false)}
+            <div className="mobile-nav-content">
+              <ul>
+                {navLinks.map((link, index) => (
+                  <motion.li 
+                    key={index}
+                    custom={index}
+                    variants={linkVariants}
                   >
-                    {link.text}
-                  </NavLink>
-                </motion.li>
-              ))}
-              <motion.li
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.1 }}
-              >
-                <ActionButton
-                  as={Link}
-                  to="contact"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                  onClick={() => setIsOpen(false)}
+                    <Link 
+                      to={link.to} 
+                      smooth={true} 
+                      duration={400} 
+                      offset={-80}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+              
+              <div className="mobile-contact">
+                <a href="tel:+17473069188" className="phone-link">
+                  <FaPhone /> +1 747-306-9188
+                </a>
+                <motion.button 
+                  className="button"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    setIsOpen(false);
+                    handleBookNow();
+                  }}
                 >
-                  Book Now
-                </ActionButton>
-              </motion.li>
-            </MobileNavItems>
-            <CloseButton onClick={() => setIsOpen(false)}>×</CloseButton>
-          </MobileMenu>
+                  Book Online
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </StyledHeader>
   );
 };
 
-const navLinks = [
-  { text: 'Home', to: 'hero' },
-  { text: 'Services', to: 'services' },
-  { text: 'Portfolio', to: 'works' },
-  { text: 'Contact', to: 'contact' }
-];
-
-// Styled Components
 const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 1rem 0;
-  transition: all 0.25s ease;
-  background: ${({ scrolled }) => scrolled ? 'rgba(255, 255, 255, 0.98)' : 'transparent'};
-  backdrop-filter: ${({ scrolled }) => scrolled ? 'blur(8px)' : 'none'};
-  box-shadow: ${({ scrolled }) => scrolled ? '0 4px 12px rgba(0, 0, 0, 0.03)' : 'none'};
-  
-  @media (max-width: 768px) {
-    padding: 0.8rem 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  }
-  
-  @media (max-width: 480px) {
-    padding: 0.7rem 0;
-  }
-`;
-
-const HeaderContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-`;
-
-const Logo = styled.div`
-  font-family: var(--font-accent);
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: var(--primary);
-  letter-spacing: -0.5px;
-  
-  h1 {
-    margin: 0;
-    font-size: 1.6rem;
-    font-weight: 500;
-  }
-  
-  @media (max-width: 768px) {
-    font-size: 1.4rem;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 1.2rem;
-    
-    h1 {
-      font-size: 1.2rem;
-    }
-  }
-  
-  span {
-    color: var(--accent);
-  }
-`;
-
-const NavLinks = styled.div`
+  background: ${props => props.scrolled ? 'var(--light)' : 'transparent'};
+  box-shadow: ${props => props.scrolled ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none'};
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  backdrop-filter: ${props => props.scrolled ? 'blur(10px)' : 'none'};
+  border-bottom: ${props => props.scrolled ? '1px solid rgba(var(--primary-rgb), 0.1)' : 'none'};
+  height: 80px;
   display: flex;
   align-items: center;
-  gap: 2rem;
   
-  @media (max-width: 992px) {
-    display: none;
-  }
-`;
-
-const NavItems = styled.ul`
-  display: flex;
-  list-style: none;
-  align-items: center;
-  gap: 2rem;
-`;
-
-const NavLink = styled(Link)`
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: var(--text);
-  position: relative;
-  transition: all 0.25s ease;
-  padding: 0.4rem 0;
-  cursor: pointer;
-  
-  &:after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--primary);
-    transition: width 0.25s ease;
-  }
-  
-  &:hover, &.active {
-    color: var(--primary);
-    
-    &:after {
-      width: 100%;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 1rem;
-    font-weight: 500;
-  }
-`;
-
-const ActionButton = styled.button`
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 0.7rem 1.3rem;
-  border-radius: var(--radius-md);
-  font-weight: 500;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  
-  &:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
-  }
-  
-  @media (max-width: 992px) {
-    display: none;
-  }
-`;
-
-const MenuToggle = styled.div`
-  display: ${({ isOpen }) => isOpen ? 'none' : 'flex'};
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 21px;
-  cursor: pointer;
-  z-index: 1100;
-
-  span {
-    display: block;
-    height: 3px;
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    background: var(--secondary);
-    border-radius: 10px;
-    transition: all 0.3s ease;
+  }
+  
+  .logo {
+    font-family: var(--font-accent);
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: ${props => props.scrolled ? 'var(--secondary-dark)' : 'var(--light)'};
+    text-shadow: ${props => props.scrolled ? 'none' : '0 2px 4px rgba(0, 0, 0, 0.3)'};
     position: relative;
-  }
-  
-  @media (min-width: 992px) {
-    display: none;
-  }
-  
-  @media (max-width: 480px) {
-    width: 26px;
-    height: 18px;
     
     span {
-      height: 2px;
+      color: var(--primary);
+      font-weight: 600;
+      position: relative;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary);
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out;
+      }
+    }
+    
+    &:hover span:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
     }
   }
-`;
-
-const MobileMenu = styled.div`
-  position: fixed;
-  top: 0;
-  right: ${({ isOpen }) => isOpen ? '0' : '-100%'};
-  width: 280px;
-  height: 100vh;
-  background: white;
-  z-index: 1001;
-  padding: 4rem 1.8rem 1.8rem;
-  transition: all 0.3s ease;
-  box-shadow: ${({ isOpen }) => isOpen ? '-4px 0 20px rgba(0, 0, 0, 0.05)' : 'none'};
-  display: flex;
-  flex-direction: column;
   
-  @media (max-width: 480px) {
-    width: 100%;
-    padding: 4rem 1.5rem 1.5rem;
+  .desktop-nav {
+    display: block;
+    
+    @media (max-width: 991px) {
+      display: none;
+    }
+    
+    ul {
+      display: flex;
+      list-style: none;
+      
+      li {
+        margin: 0 1.2rem;
+        
+        a {
+          color: ${props => props.scrolled ? 'var(--secondary)' : 'var(--light)'};
+          font-weight: 500;
+          font-size: 0.95rem;
+          letter-spacing: 1px;
+          position: relative;
+          padding: 0.5rem 0;
+          cursor: pointer;
+          text-transform: uppercase;
+          
+          &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+          }
+          
+          &:hover, &.active {
+            color: ${props => props.scrolled ? 'var(--primary)' : 'var(--primary)'};
+            
+            &:after {
+              transform: scaleX(1);
+              transform-origin: bottom left;
+            }
+          }
+        }
+      }
+    }
   }
-`;
-
-const MobileNavItems = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
   
-  @media (max-width: 480px) {
-    gap: 1.8rem;
+  .header-right {
+    display: flex;
     align-items: center;
+    
+    @media (max-width: 991px) {
+      display: none;
+    }
+    
+    .phone-link {
+      display: flex;
+      align-items: center;
+      margin-right: 1.5rem;
+      color: ${props => props.scrolled ? 'var(--secondary)' : 'var(--light)'};
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      
+      svg {
+        margin-right: 0.5rem;
+        color: var(--primary);
+        transition: transform 0.3s ease;
+      }
+      
+      &:hover {
+        color: var(--primary);
+        
+        svg {
+          transform: rotate(-10deg) scale(1.1);
+        }
+      }
+    }
+    
+    .whatsapp-button {
+      display: flex;
+      align-items: center;
+      margin-right: 1.5rem;
+      color: ${props => props.scrolled ? 'var(--secondary)' : 'var(--light)'};
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      
+      svg {
+        margin-right: 0.5rem;
+        color: var(--primary);
+        transition: transform 0.3s ease;
+      }
+      
+      &:hover {
+        color: var(--primary);
+        
+        svg {
+          transform: rotate(-10deg) scale(1.1);
+        }
+      }
+    }
   }
-`;
-
-const CloseButton = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: var(--secondary);
-  box-shadow: none;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
   
-  &:hover {
-    color: var(--accent);
-    background: none;
-    transform: none;
+  .mobile-nav-toggle {
+    display: none;
+    
+    @media (max-width: 991px) {
+      display: block;
+    }
+    
+    button {
+      background: transparent;
+      border: none;
+      color: ${props => props.scrolled ? 'var(--secondary-dark)' : 'var(--light)'};
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 1rem;
+      
+      &:hover {
+        color: var(--primary);
+        transform: scale(1.1);
+      }
+    }
+  }
+  
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 350px;
+    height: 100vh;
+    background: var(--light);
+    z-index: 1001;
+    display: block;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--primary);
+      opacity: 0.8;
+    }
+  }
+  
+  .mobile-nav-content {
+    padding: 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    
+    ul {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    
+    li {
+      margin-bottom: 1.5rem;
+      
+      a {
+        color: var(--secondary-dark);
+        font-size: 1.2rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: var(--transition);
+        display: block;
+        padding: 0.5rem 0;
+        position: relative;
+        overflow: hidden;
+        
+        &:before {
+          content: '';
+          position: absolute;
+          width: 4px;
+          height: 100%;
+          background: var(--primary);
+          left: -10px;
+          top: 0;
+          transition: all 0.3s ease;
+        }
+        
+        &:hover {
+          color: var(--primary);
+          transform: translateX(5px);
+          
+          &:before {
+            left: -5px;
+          }
+        }
+      }
+    }
+  }
+  
+  .mobile-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    
+    .phone-link, .whatsapp-button {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: var(--secondary);
+      font-weight: 500;
+      padding: 0.8rem 0;
+      position: relative;
+      
+      svg {
+        margin-right: 0.8rem;
+        color: var(--primary);
+        font-size: 1.2rem;
+      }
+      
+      &:hover {
+        color: var(--primary);
+      }
+    }
+    
+    .button {
+      width: 100%;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   
   @media (max-width: 480px) {
-    top: 15px;
-    right: 15px;
+    height: 70px;
+    
+    .logo {
+      font-size: 1.5rem;
+    }
+    
+    .mobile-nav {
+      width: 100%;
+      max-width: 100%;
+    }
   }
 `;
 

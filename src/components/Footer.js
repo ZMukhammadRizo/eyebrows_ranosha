@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaInstagram, FaFacebook, FaTwitter, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
-import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -16,14 +17,11 @@ const Footer = () => {
               Exclusive premium eyebrow styling services. Our mission is to enhance your natural beauty and help you feel more confident using eco-friendly products.
             </FooterDesc>
             <SocialLinks>
-              <SocialLink href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <SocialLink href="https://www.instagram.com/ranosha_la/" target="_blank" rel="noopener noreferrer">
                 <FaInstagram />
               </SocialLink>
               <SocialLink href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                 <FaFacebook />
-              </SocialLink>
-              <SocialLink href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <FaTwitter />
               </SocialLink>
             </SocialLinks>
           </FooterInfo>
@@ -75,10 +73,11 @@ const Footer = () => {
         </FooterGrid>
         
         <FooterBottom>
-          <Copyright> {year} Ranosha Eyebrows. All rights reserved.</Copyright>
+          <Copyright>© {year} Ranosha Eyebrows. All rights reserved.</Copyright>
           <BottomLinks>
-            <BottomLink href="#">Privacy Policy</BottomLink>
-            <BottomLink href="#">Terms of Use</BottomLink>
+            <BottomLink to="/privacy-policy">Privacy Policy</BottomLink>
+            <BottomLink to="/terms-of-use">Terms of Use</BottomLink>
+            <BottomLink to="/cookie-policy">Cookie Policy</BottomLink>
           </BottomLinks>
         </FooterBottom>
       </div>
@@ -117,10 +116,16 @@ const FooterInfo = styled.div`
   }
 `;
 
-const FooterLogo = styled.h3`
-  font-size: 1.5rem;
+const FooterLogo = styled.h2`
+  font-size: 1.8rem;
   margin-bottom: 1rem;
-  color: white;
+  color: var(--light);
+  font-family: var(--font-accent);
+  
+  span {
+    color: var(--primary);
+    font-weight: 600;
+  }
 `;
 
 const FooterDesc = styled.p`
@@ -137,20 +142,13 @@ const SocialLinks = styled.div`
 `;
 
 const SocialLink = styled.a`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  color: white;
-  font-size: 1.2rem;
-  transition: var(--transition);
+  color: var(--light);
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
   
   &:hover {
-    background-color: var(--primary);
-    transform: translateY(-3px);
+    color: var(--primary);
+    transform: translateY(-3px) rotate(5deg);
   }
 `;
 
@@ -160,13 +158,14 @@ const FooterServices = styled.div``;
 
 const FooterContact = styled.div``;
 
-const FooterHeading = styled.h4`
+const FooterHeading = styled.h3`
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
-  color: white;
   position: relative;
+  font-family: var(--font-accent);
+  letter-spacing: 1px;
   
-  &::after {
+  &:after {
     content: '';
     position: absolute;
     left: 0;
@@ -174,6 +173,11 @@ const FooterHeading = styled.h4`
     width: 40px;
     height: 2px;
     background-color: var(--primary);
+    transition: width 0.3s ease;
+  }
+  
+  &:hover:after {
+    width: 60px;
   }
 `;
 
@@ -182,7 +186,7 @@ const FooterLinks = styled.ul`
   padding: 0;
 `;
 
-const FooterLink = styled(Link)`
+const FooterLink = styled(ScrollLink)`
   display: block;
   margin-bottom: 0.8rem;
   color: rgba(255, 255, 255, 0.8);
@@ -275,15 +279,20 @@ const BottomLinks = styled.div`
   gap: 1.5rem;
 `;
 
-const BottomLink = styled.a`
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.9rem;
+const BottomLink = styled(RouterLink)`
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
+  font-size: 0.85rem;
   transition: var(--transition);
+  cursor: pointer;
   
   &:hover {
     color: var(--primary);
   }
+  
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
-export default Footer; 
+export default Footer;

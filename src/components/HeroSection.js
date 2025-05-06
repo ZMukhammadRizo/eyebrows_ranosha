@@ -9,657 +9,408 @@ const heroImage = hero;
 
 const HeroSection = () => {
   return (
-    <StyledHero id="hero">
-      <BackgroundDecoration />
-      <BackgroundCircle1 />
-      <BackgroundCircle2 />
-      
-      {/* Add decorative floating elements */}
-      <FloatingElement1 
-        animate={{ 
-          y: [0, -15, 0],
-          rotate: [0, 5, 0]
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <FloatingElement2 
-        animate={{ 
-          y: [0, 20, 0],
-          rotate: [0, -8, 0]
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1
-        }}
-      />
-      <FloatingElement3 
-        animate={{ 
-          y: [0, -20, 0],
-          x: [0, 15, 0]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2
-        }}
-      />
-      
-      <HeroContent className="container">
-        <TextContent>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+    <StyledHero id="home">
+      <div className="overlay"></div>
+      <div className="container">
+        <motion.div 
+          className="hero-content"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.8, 
+            delay: 0.2,
+            ease: [0.25, 0.1, 0.25, 1] 
+          }}
+        >
+          <motion.span 
+            className="subtitle"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
           >
-            <SubHeading>Premium Eco-Friendly Beauty Salon</SubHeading>
-          </motion.div>
+            Expert Permanent Makeup Salon
+          </motion.span>
           
           <motion.h1
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
           >
-            Perfect Eyebrows <br/> 
-            <AccentSpan>Perfect You</AccentSpan>
+            Enhance Your<br/>Natural Beauty
           </motion.h1>
           
+          <motion.div 
+            className="divider"
+            initial={{ width: 0 }}
+            animate={{ width: 80 }}
+            transition={{ duration: 0.7, delay: 0.9 }}
+          ></motion.div>
+          
           <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 1.1 }}
           >
-            Experience premium eyebrow styling that enhances your natural beauty.
-            Our expert techniques create the perfect shape to frame your unique features using eco-friendly products and sustainable practices.
+            Beauty Salon Ranosha — Permanent Makeup & Henna Studio in Torrance, CA We specialize in natural-looking permanent makeup for brows and lips, as well as organic black henna for nails. With 6+ years of experience, we provide a halal, safe, and relaxing beauty experience. Located in sunny Los Angeles.
           </motion.p>
           
-          <ButtonsWrapper>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <PrimaryButton 
-                  to="contact"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                >
-                  <ButtonContent>
-                    <span>Book an Appointment</span>
-                    <ButtonArrow className="button-arrow">→</ButtonArrow>
-                  </ButtonContent>
-                </PrimaryButton>
-              </motion.div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <SecondaryButton 
-                  to="services"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                >
-                  <span>Explore Services</span>
-                </SecondaryButton>
-              </motion.div>
-            </motion.div>
-          </ButtonsWrapper>
-          
-          <TrustSignals>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.9 }}
-            >
-              <TrustItem>
-                <TrustDot />
-                <span>100% Natural Products</span>
-              </TrustItem>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.0 }}
-            >
-              <TrustItem>
-                <TrustDot />
-                <span>Certified Specialists</span>
-              </TrustItem>
-            </motion.div>
-          </TrustSignals>
-        </TextContent>
-        
-        <ImageContent>
-          <ImageWrapper
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
+          <motion.div 
+            className="hero-buttons"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.3 }}
           >
-            <ImageContainer>
-              <img src={heroImage} alt="Eyebrows by Ranosha" />
-              <ImageOverlay />
-              <ImageGlowEffect />
-            </ImageContainer>
-            
-            <BadgeContainer>
-              <Badge
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 1.2 }}
-                whileHover={{ y: -5, scale: 1.05 }}
+            <Link 
+              to="services" 
+              smooth={true} 
+              duration={800} 
+              offset={-80}
+            >
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <BadgeHighlight>6+</BadgeHighlight>
-                <span>Years Experience</span>
-              </Badge>
-              
-              <Badge2
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 1.4 }}
-                whileHover={{ y: -5, scale: 1.05 }}
-              >
-                <BadgeHighlight>100%</BadgeHighlight>
-                <span>Satisfaction</span>
-              </Badge2>
-            </BadgeContainer>
+                Explore Services
+              </motion.button>
+            </Link>
             
-            <CornerDecoration />
-          </ImageWrapper>
-        </ImageContent>
-      </HeroContent>
+            <Link 
+              to="contact" 
+              smooth={true} 
+              duration={800} 
+              offset={-80}
+            >
+              <motion.button 
+                className="button-outline"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                Book Appointment
+              </motion.button>
+            </Link>
+          </motion.div>
+        </motion.div>
+      </div>
       
+      <motion.div 
+        className="scroll-indicator"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+      >
+        <motion.div 
+          className="mouse"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ 
+            repeat: Infinity, 
+            duration: 1.5,
+            ease: "easeInOut" 
+          }}
+        >
+          <motion.div className="scroll"></motion.div>
+        </motion.div>
+        <p>Scroll Down</p>
+      </motion.div>
       
+      <motion.div 
+        className="floating-elements"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.8 }}
+      >
+        <motion.div 
+          className="element element-1"
+          animate={{ 
+            y: [0, -15, 0],
+            rotate: [0, 5, 0]
+          }}
+          transition={{ 
+            repeat: Infinity, 
+            duration: 6,
+            ease: "easeInOut" 
+          }}
+        ></motion.div>
+        
+        <motion.div 
+          className="element element-2"
+          animate={{ 
+            y: [0, 20, 0],
+            rotate: [0, -8, 0]
+          }}
+          transition={{ 
+            repeat: Infinity, 
+            duration: 7,
+            ease: "easeInOut",
+            delay: 0.5
+          }}
+        ></motion.div>
+        
+        <motion.div 
+          className="element element-3"
+          animate={{ 
+            y: [0, 12, 0],
+            x: [0, -8, 0]
+          }}
+          transition={{ 
+            repeat: Infinity, 
+            duration: 8,
+            ease: "easeInOut",
+            delay: 1 
+          }}
+        ></motion.div>
+      </motion.div>
     </StyledHero>
   );
 };
 
-// Styled components
 const StyledHero = styled.section`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  height: 100vh;
+  min-height: 700px;
   position: relative;
-  padding: 5rem 0 2rem;
-  overflow: hidden;
-  background: var(--light-bg);
-  color: var(--text);
-  
-  @media (max-width: 992px) {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-`;
-
-const BackgroundDecoration = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(var(--primary-light) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.2;
-  pointer-events: none;
-`;
-
-// Floating decorative elements
-const FloatingElement1 = styled(motion.div)`
-  position: absolute;
-  top: 15%;
-  left: 5%;
-  width: 80px;
-  height: 80px;
-  border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
-  background: linear-gradient(135deg, var(--primary-light), rgba(224, 68, 124, 0.1));
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 1;
-`;
-
-const FloatingElement2 = styled(motion.div)`
-  position: absolute;
-  bottom: 25%;
-  left: 8%;
-  width: 120px;
-  height: 120px;
-  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  background: linear-gradient(135deg, rgba(224, 68, 124, 0.1), var(--primary-light));
-  opacity: 0.4;
-  pointer-events: none;
-  z-index: 1;
-`;
-
-const FloatingElement3 = styled(motion.div)`
-  position: absolute;
-  top: 20%;
-  right: 15%;
-  width: 60px;
-  height: 60px;
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  background: linear-gradient(135deg, var(--secondary-light), rgba(224, 68, 124, 0.05));
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 1;
-`;
-
-const BackgroundCircle1 = styled.div`
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: linear-gradient(to right, var(--primary-light), transparent);
-  top: -150px;
-  left: -150px;
-  z-index: 0;
-  opacity: 0.5;
-`;
-
-const BackgroundCircle2 = styled.div`
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: linear-gradient(to left, var(--primary-light), transparent);
-  bottom: -100px;
-  right: -100px;
-  z-index: 0;
-  opacity: 0.5;
-`;
-
-const HeroContent = styled.div`
+  background-image: url(${heroImage});
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  position: relative;
-  z-index: 2;
-  color: var(--text);
   
-  @media (max-width: 992px) {
-    flex-direction: column;
-    text-align: center;
-    gap: 3rem;
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.5) 100%);
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(198, 156, 109, 0.1) 0%, transparent 70%);
+    }
   }
-  
-  @media (max-width: 480px) {
-    gap: 2rem;
-    padding-top: 2rem;
+
+  .container {
+    position: relative;
+    z-index: 2;
   }
-`;
 
-const SubHeading = styled.span`
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--primary-dark);
-  margin-bottom: 1rem;
-  display: inline-block;
-  padding: 0.4rem 0.8rem;
-  background-color: rgba(var(--primary-rgb), 0.15);
-  border-radius: var(--radius-sm);
-`;
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    color: var(--light);
+    max-width: 650px;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: 0;
+      width: 80px;
+      height: 80px;
+      border-top: 2px solid var(--primary);
+      border-left: 2px solid var(--primary);
+      opacity: 0.6;
+    }
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      border-bottom: 2px solid var(--primary);
+      border-right: 2px solid var(--primary);
+      opacity: 0.6;
+    }
+  }
 
-const TextContent = styled.div`
-  flex: 1;
-  max-width: 600px;
-  
+  .subtitle {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    position: relative;
+    padding-left: 40px;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 30px;
+      height: 1px;
+      background-color: var(--primary);
+    }
+  }
+
   h1 {
     margin-bottom: 1.5rem;
+    color: var(--light);
     line-height: 1.1;
-    color: var(--secondary-dark);
-    font-weight: 600;
   }
-  
+
+  .divider {
+    background: var(--accent);
+    margin: 2rem 0;
+  }
+
   p {
-    color: var(--text);
-    font-size: 1.1rem;
-    line-height: 1.7;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.8;
     margin-bottom: 2rem;
-    font-weight: 400;
+    max-width: 600px;
+    font-weight: 300;
   }
-  
-  @media (max-width: 992px) {
-    max-width: 100%;
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+    z-index: 3;
+    color: var(--light);
     
     p {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      opacity: 0.8;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
   }
-`;
 
-const PrimaryButton = styled(Link)`
-  background: var(--primary);
-  color: white;
-  padding: 1rem 1.8rem;
-  border-radius: var(--radius-md);
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition);
-  display: inline-block;
-  box-shadow: var(--shadow);
-  
-  &:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
-    
-    .button-arrow {
-      transform: translateX(4px);
-    }
+  .mouse {
+    width: 26px;
+    height: 40px;
+    border: 2px solid var(--light);
+    border-radius: 20px;
+    position: relative;
   }
-  
-  @media (max-width: 480px) {
-    width: 100%;
-    padding: 0.9rem 1.5rem;
-    font-size: 0.95rem;
-    text-align: center;
+
+  .scroll {
+    width: 4px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
   }
-`;
 
-const ButtonsWrapper = styled.div`
-  display: flex;
-  gap: 1rem;
-  
-  @media (max-width: 992px) {
-    justify-content: center;
-  }
-  
-  @media (max-width: 480px) {
-    flex-direction: column;
-    width: 100%;
-    max-width: 280px;
-    gap: 0.8rem;
-  }
-`;
-
-const ButtonContent = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-const ButtonArrow = styled.span`
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-  display: inline-block;
-`;
-
-const SecondaryButton = styled(Link)`
-  background: transparent;
-  color: var(--secondary);
-  padding: 13px 26px;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: var(--transition);
-  font-weight: 500;
-  display: inline-block;
-  border: 1px solid var(--secondary);
-  text-decoration: none;
-  
-  &:hover {
-    background: var(--secondary);
-    color: white;
-    box-shadow: var(--shadow);
-  }
-  
-  @media (max-width: 480px) {
-    width: 100%;
-    padding: 0.9rem 1.5rem;
-    font-size: 0.95rem;
-    text-align: center;
-  }
-`;
-
-const TrustSignals = styled.div`
-  display: flex;
-  gap: 2rem;
-  margin-top: 2.5rem;
-  
-  @media (max-width: 992px) {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  @media (max-width: 480px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-`;
-
-const TrustItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--text);
-  font-size: 0.95rem;
-  font-weight: 500;
-`;
-
-const TrustDot = styled.span`
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--accent);
-`;
-
-const AccentSpan = styled.span`
-  color: var(--primary);
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-`;
-
-
-const ImageContent = styled.div`
-  flex: 1;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  z-index: 1;
-`;
-
-const ImageWrapper = styled(motion.div)`
-  position: relative;
-  max-width: 550px;
-  
-  @media (max-width: 480px) {
-    max-width: 90%;
-  }
-`;
-
-const ImageContainer = styled.div`
-  width: 100%;
-  aspect-ratio: 3/4;
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-  
-  img {
+  .floating-elements {
+    position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
   }
-`;
 
-const ImageOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.3), transparent 50%);
-`;
+  .element {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+  }
 
-const ImageGlowEffect = styled.div`
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border-radius: var(--radius-md);
-  pointer-events: none;
-  box-shadow: inset 0 0 30px rgba(224, 68, 124, 0.15);
-`;
-
-const BadgeContainer = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-`;
-
-const Badge = styled(motion.div)`
-  position: absolute;
-  left: -30px;
-  top: 30%;
-  background: white;
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 120px;
-  pointer-events: auto;
-  cursor: default;
-  backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  
-  span {
-    font-size: 0.8rem;
-    color: var(--text);
-  }
-  
-  @media (max-width: 1200px) {
-    left: -20px;
-    padding: 0.8rem;
-    min-width: 100px;
-  }
-  
-  @media (max-width: 992px) {
-    left: 10%;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 0.7rem;
-    min-width: 90px;
-    left: 5%;
-    
-    span {
-      font-size: 0.7rem;
-    }
-  }
-`;
-
-const Badge2 = styled(motion.div)`
-  position: absolute;
-  right: -30px;
-  bottom: 30%;
-  background: white;
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 120px;
-  pointer-events: auto;
-  cursor: default;
-  backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  
-  span {
-    font-size: 0.8rem;
-    color: var(--text);
-  }
-  
-  @media (max-width: 1200px) {
-    right: -20px;
-    padding: 0.8rem;
-    min-width: 100px;
-  }
-  
-  @media (max-width: 992px) {
+  .element-1 {
+    width: 300px;
+    height: 300px;
+    top: 15%;
     right: 10%;
+    background: var(--primary);
+    filter: blur(60px);
   }
-  
-  @media (max-width: 480px) {
-    padding: 0.7rem;
-    min-width: 90px;
-    right: 5%;
-    
-    span {
-      font-size: 0.7rem;
+
+  .element-2 {
+    width: 200px;
+    height: 200px;
+    bottom: 20%;
+    right: 20%;
+    background: var(--accent);
+    filter: blur(50px);
+  }
+
+  .element-3 {
+    width: 250px;
+    height: 250px;
+    bottom: 10%;
+    left: 15%;
+    background: var(--secondary-light);
+    filter: blur(55px);
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      padding: 0;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .divider {
+      margin: 1.5rem auto;
+    }
+
+    .hero-buttons {
+      justify-content: center;
+    }
+
+    .element-1 {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      right: -50px;
+    }
+
+    .element-2 {
+      width: 150px;
+      height: 150px;
+      bottom: 15%;
+      right: 10%;
+    }
+
+    .element-3 {
+      width: 180px;
+      height: 180px;
+      bottom: 5%;
+      left: -50px;
     }
   }
-`;
 
-const BadgeHighlight = styled.span`
-  font-size: 1.6rem !important;
-  font-weight: 600;
-  color: var(--primary) !important;
-  line-height: 1;
-  margin-bottom: 0.3rem;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  
   @media (max-width: 480px) {
-    font-size: 1.3rem !important;
-  }
-`;
+    min-height: 90vh;
+    
+    .hero-buttons {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
 
-const CornerDecoration = styled.div`
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border-right: 2px solid var(--primary);
-  border-bottom: 2px solid var(--primary);
-  bottom: -15px;
-  right: -15px;
-  border-bottom-right-radius: 10px;
-  z-index: -1;
+    p br {
+      display: none;
+    }
+
+    .element-1 {
+      display: none;
+    }
+  }
 `;
 
 export default HeroSection;

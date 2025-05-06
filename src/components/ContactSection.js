@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaCalendarCheck } from 'react-icons/fa';
 import SectionHeading from './SectionHeading';
 
 // Add a high-quality image of an eyebrow master
@@ -118,10 +118,44 @@ const ContactSection = () => {
     <StyledSection id="contact">
       <div className="container">
         <SectionHeading
-          subheading="Contact Us"
-          heading="Book an Appointment"
-          text="Fill out the form below, and we will contact you to confirm your appointment. We strive to respond to all inquiries within 24 hours."
+          subheading="Schedule Your Visit"
+          heading="Premium Beauty Experience Awaits"
+          text="Experience luxurious beauty treatments tailored to enhance your natural features. Our expert specialists use premium products and advanced techniques for exceptional results."
         />
+        
+        <BookingInfo>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <BookingTitle>
+              <FaCalendarCheck /> Why Book With Us
+            </BookingTitle>
+            <BookingDescription>
+              <p>At Ranosha Beauty Salon, we provide personalized beauty treatments from certified professionals with years of experience. Our convenient booking system allows you to secure your preferred time slot with ease.</p>
+              
+              <BookingFeatures>
+                <BookingFeature>
+                  <span>✓</span> Expert-led treatments
+                </BookingFeature>
+                <BookingFeature>
+                  <span>✓</span> Premium quality products
+                </BookingFeature>
+                <BookingFeature>
+                  <span>✓</span> Comfortable, luxurious environment
+                </BookingFeature>
+                <BookingFeature>
+                  <span>✓</span> Flexible scheduling options
+                </BookingFeature>
+                <BookingFeature>
+                  <span>✓</span> Personalized service plans
+                </BookingFeature>
+              </BookingFeatures>
+            </BookingDescription>
+          </motion.div>
+        </BookingInfo>
         
         <ContentWrapper>
           <ContactInfo>
@@ -151,6 +185,9 @@ const ContactSection = () => {
             viewport={{ once: true }}
             style={{ width: '100%' }}
           >            
+            <FormTitle>Book Your Appointment</FormTitle>
+            <FormSubtitle>Complete the form below and we'll confirm your appointment within 24 hours</FormSubtitle>
+            
             <ContactForm onSubmit={handleSubmit}>
               <FormGroup>
                 <FormLabel htmlFor="name">Full Name</FormLabel>
@@ -251,6 +288,66 @@ const StyledSection = styled.section`
   padding: var(--section-padding);
   background-color: var(--light);
   overflow: hidden;
+`;
+
+const BookingInfo = styled.div`
+  margin: 1.5rem 0 3rem;
+  background: linear-gradient(to right, rgba(var(--primary-rgb), 0.05), rgba(var(--primary-rgb), 0.02));
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--primary);
+`;
+
+const BookingTitle = styled.h3`
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  
+  svg {
+    font-size: 1.5rem;
+  }
+`;
+
+const BookingDescription = styled.div`
+  color: var(--secondary);
+  line-height: 1.7;
+  
+  p {
+    margin-bottom: 1.5rem;
+  }
+`;
+
+const BookingFeatures = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
+const BookingFeature = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  
+  span {
+    color: var(--primary);
+    font-weight: bold;
+  }
+`;
+
+const FormTitle = styled.h3`
+  color: var(--secondary-dark);
+  margin-bottom: 0.5rem;
+`;
+
+const FormSubtitle = styled.p`
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
 `;
 
 const ContentWrapper = styled.div`
