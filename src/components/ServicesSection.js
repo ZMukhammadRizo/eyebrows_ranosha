@@ -8,8 +8,8 @@ const ServicesSection = () => {
   const services = [
     {
       icon: <FaLeaf />,
-      title: 'Naturally tinted eyebrows',
-      description: 'Well-shaped, naturally tinted eyebrows enhance your features and add expressiveness. We use safe, hypoallergenic mineral pigments and gentle techniques for a soft, lasting result that highlights your individuality.',
+      title: 'Permanent eyebrow makeup',
+      description: 'Permanent eyebrow makeup enhances your features with a perfect shape and natural, soft effect. Safe, hypoallergenic pigments and gentle techniques ensure long-lasting, well-groomed brows that highlight your individuality.',
     },
     {
       icon: <FaKiss />,

@@ -126,8 +126,8 @@ const Header = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <a href="tel:+17473069188" className="phone-link">
-              <FaPhone /> +1 747-306-9188
+            <a href="https://api.whatsapp.com/send/?phone=17473069188&text&type=phone_number&app_absent=0" className="whatsapp-link" target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp />WhatsApp
             </a>
             <motion.button 
               className="button"
@@ -182,8 +182,8 @@ const Header = () => {
               </ul>
               
               <div className="mobile-contact">
-                <a href="tel:+17473069188" className="phone-link">
-                  <FaPhone /> +1 747-306-9188
+                <a href="https://api.whatsapp.com/send/?phone=17473069188&text&type=phone_number&app_absent=0" className="whatsapp-link" target="_blank" rel="noopener noreferrer">
+                  <FaWhatsapp />WhatsApp
                 </a>
                 <motion.button 
                   className="button"
@@ -318,31 +318,7 @@ const StyledHeader = styled.header`
       display: none;
     }
     
-    .phone-link {
-      display: flex;
-      align-items: center;
-      margin-right: 1.5rem;
-      color: ${props => props.scrolled ? 'var(--secondary)' : 'var(--light)'};
-      font-weight: 500;
-      position: relative;
-      padding: 0.5rem 0;
-      
-      svg {
-        margin-right: 0.5rem;
-        color: var(--primary);
-        transition: transform 0.3s ease;
-      }
-      
-      &:hover {
-        color: var(--primary);
-        
-        svg {
-          transform: rotate(-10deg) scale(1.1);
-        }
-      }
-    }
-    
-    .whatsapp-button {
+    .whatsapp-link {
       display: flex;
       align-items: center;
       margin-right: 1.5rem;
@@ -472,7 +448,7 @@ const StyledHeader = styled.header`
     gap: 1rem;
     margin-top: 2rem;
     
-    .phone-link, .whatsapp-button {
+    .phone-link, .whatsapp-link {
       display: flex;
       align-items: center;
       justify-content: flex-start;

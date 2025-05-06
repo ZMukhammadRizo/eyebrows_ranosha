@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaInstagram, FaFacebook, FaTwitter, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaTwitter, FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -22,6 +22,9 @@ const Footer = () => {
               </SocialLink>
               <SocialLink href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                 <FaFacebook />
+              </SocialLink>
+              <SocialLink href="https://api.whatsapp.com/send/?phone=17473069188&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">
+                <FaWhatsapp />
               </SocialLink>
             </SocialLinks>
           </FooterInfo>
@@ -61,7 +64,7 @@ const Footer = () => {
               </ContactItem>
               <ContactItem>
                 <FaEnvelope />
-                <span>info@ranoshaeyebrows.com</span>
+                <span>beautysalonranosha@gmail.com</span>
               </ContactItem>
             </ContactLinks>
             <OpeningHours>

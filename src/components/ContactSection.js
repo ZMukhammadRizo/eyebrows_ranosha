@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaCalendarCheck } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaCalendarCheck, FaWhatsapp } from 'react-icons/fa';
 import SectionHeading from './SectionHeading';
 
 // Add a high-quality image of an eyebrow master
-const masterImage = 'https://images.unsplash.com/photo-1614583225154-5fcdda07019e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1336&q=80';
+// const masterImage = 'https://images.unsplash.com/photo-1614583225154-5fcdda07019e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1336&q=80';
 
-// Replace with your actual bot token and chat ID
-const TELEGRAM_BOT_TOKEN = '8034833417:AAFI2o7DKWo6TYgp0NhkeLhFRV6F_3mgsmM';
-const TELEGRAM_CHAT_ID = '1210135420';
+// WhatsApp number for bookings (replace with your actual number)
+const WHATSAPP_NUMBER = '17473069188'; // Example: 15551234567 (country code + number)
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -28,67 +27,43 @@ const ContactSection = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const sendToTelegram = async (data) => {
-    const text = `
- 🔔 New Booking Request!
-
- 👤 Name: ${data.name}
- 📧 Email: ${data.email}
- 📱 Phone: ${data.phone}
- 💇 Service: ${data.service}
- 📝 Message: ${data.message}
-    `;
-    
-    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-    
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text: text,
-        parse_mode: 'HTML'
-      })
-    };
-    
-    try {
-      const response = await fetch(url, options);
-      const data = await response.json();
-      return data.ok;
-    } catch (error) {
-      console.error('Error sending to Telegram:', error);
-      return false;
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
-    
-    try {
-      const success = await sendToTelegram(formData);
-      
-      if (success) {
-        setSubmitStatus('success');
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          service: '',
-          message: '',
-        });
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+
+    const { name, email, phone, service, message } = formData;
+
+    // Construct the pre-filled message for WhatsApp
+    let whatsappMessage = `Hello!\nI want to book your service:\n\n`;
+    whatsappMessage += `Name: ${name}\n`;
+    whatsappMessage += `Email: ${email}\n`;
+    whatsappMessage += `Phone: ${phone}\n`;
+    whatsappMessage += `Service: ${service}\n`;
+    if (message) {
+      whatsappMessage += `Message: ${message}\n`;
     }
+    whatsappMessage += `\nPlease confirm availability or suggest a time.`;
+
+    // URL encode the message
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+
+    // Create the WhatsApp URL
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+    // Open WhatsApp in a new tab
+    window.open(whatsappURL, '_blank');
+
+    // Assume success for opening WhatsApp link and clear form
+    setSubmitStatus('success');
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      service: '',
+      message: '',
+    });
+    setIsSubmitting(false);
   };
 
   const contactInfo = [
@@ -98,14 +73,18 @@ const ContactSection = () => {
       details: ['21250 Hawthorne Blvd', 'Torrance, CA 90503'],
     },
     {
-      icon: <FaPhone />,
-      title: 'Phone',
-      details: ['+1 747-306-9188'],
+      icon: <FaWhatsapp />,
+      title: 'WhatsApp Us',
+      details: [
+        <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'none'}}>
+          Chat on WhatsApp (+1 747-306-9188)
+        </a>
+      ],
     },
     {
       icon: <FaEnvelope />,
       title: 'Email',
-      details: ['info@ranoshaeyebrows.com', 'booking@ranoshaeyebrows.com'],
+      details: ['beautysalonranosha@gmail.com']
     },
     {
       icon: <FaClock />,
@@ -171,7 +150,7 @@ const ContactSection = () => {
                 <div>
                   <InfoTitle>{item.title}</InfoTitle>
                   {item.details.map((detail, idx) => (
-                    <InfoDetail key={idx}>{detail}</InfoDetail>
+                    <InfoDetail key={idx}>{typeof detail === 'string' ? detail : detail}</InfoDetail>
                   ))}
                 </div>
               </ContactInfoItem>
@@ -186,7 +165,7 @@ const ContactSection = () => {
             style={{ width: '100%' }}
           >            
             <FormTitle>Book Your Appointment</FormTitle>
-            <FormSubtitle>Complete the form below and we'll confirm your appointment within 24 hours</FormSubtitle>
+            <FormSubtitle>Complete the form below and we'll confirm your appointment via WhatsApp.</FormSubtitle>
             
             <ContactForm onSubmit={handleSubmit}>
               <FormGroup>
@@ -214,7 +193,7 @@ const ContactSection = () => {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <FormLabel htmlFor="phone">Phone</FormLabel>
+                  <FormLabel htmlFor="phone">Phone (for WhatsApp)</FormLabel>
                   <FormInput
                     type="tel"
                     id="phone"
@@ -237,17 +216,14 @@ const ContactSection = () => {
                   required
                 >
                   <option value="">Select a service</option>
-                  <option value="Eyebrow Shaping">Eyebrow Shaping</option>
-                  <option value="Microblading">Microblading</option>
-                  <option value="Eyebrow Tinting">Eyebrow Tinting</option>
-                  <option value="Eyebrow Lamination">Eyebrow Lamination</option>
-                  <option value="Full Eyebrow Makeover">Full Eyebrow Makeover</option>
-                  <option value="Consultation">Consultation</option>
+                  <option value="Permanent eyebrow makeup">Permanent eyebrow makeup</option>
+                  <option value="Permanent lip makeup">Permanent lip makeup</option>
+                  <option value="Henna nail art">Henna nail art</option>
                 </FormInput>
               </FormGroup>
               
               <FormGroup>
-                <FormLabel htmlFor="message">Message</FormLabel>
+                <FormLabel htmlFor="message">Message (Optional)</FormLabel>
                 <FormTextarea
                   id="message"
                   name="message"
@@ -259,21 +235,15 @@ const ContactSection = () => {
               
               {submitStatus === 'success' && (
                 <SuccessMessage>
-                  Thank you for your message! We will contact you shortly to confirm your appointment.
+                  Opening WhatsApp to send your booking request! Please complete the process there.
                 </SuccessMessage>
-              )}
-              
-              {submitStatus === 'error' && (
-                <ErrorMessage>
-                  There was an error sending your message. Please try again or contact us directly by phone.
-                </ErrorMessage>
               )}
               
               <SubmitButton 
                 type="submit" 
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Sending...' : 'Book Appointment'}
+                {isSubmitting ? 'Preparing...' : 'Send via WhatsApp'}
               </SubmitButton>
             </ContactForm>
           </motion.div>
