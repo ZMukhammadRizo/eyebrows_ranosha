@@ -8,27 +8,20 @@ const ServicesSection = () => {
   const services = [
     {
       icon: <FaLeaf />,
-      title: 'Velvet Brows Technique',
-      description: 'Our signature eyebrow technique creates soft, natural-looking brows with dimensional shading that perfectly frames your face and lasts for years with minimal fading.',
-      highlight: 'Signature Technique',
+      title: 'Naturally tinted eyebrows',
+      description: 'Well-shaped, naturally tinted eyebrows enhance your features and add expressiveness. We use safe, hypoallergenic mineral pigments and gentle techniques for a soft, lasting result that highlights your individuality.',
     },
     {
       icon: <FaKiss />,
-      title: 'Aquarelle Lips',
-      description: 'Exclusive lip enhancement technique that creates a delicate watercolor effect, adding natural volume, definition and a perfect color balance for a youthful appearance.',
-      highlight: 'Most Popular',
-    },
-    {
-      icon: <FaEye />,
-      title: 'Shadow Eyeliner',
-      description: 'Sophisticated eyeliner technique that creates a soft, gradient effect to enhance your eyes with a subtle yet striking definition that complements your natural beauty.',
-      highlight: 'Elegant Look',
+      title: 'Permanent lip makeup',
+      description: 'Permanent lip makeup defines the shape and contour, giving lips a fresh, natural look. Gentle techniques and soft shades ensure comfort and lasting, beautiful results.',
+
     },
     {
       icon: <FaSpa />,
-      title: 'Areola & Camouflage',
-      description: 'Specialized restoration techniques for areola reconstruction and camouflage treatments for scars and discoloration, performed with the utmost care and precision.',
-      highlight: 'Medical Grade',
+      title: 'Henna nail art',
+      description: 'Henna nail art is a stylish way to express individuality and taste. Made with natural, skin-safe henna, the designs stay vibrant and beautiful for several days — ideal for both everyday wear and special occasions.',
+
     },
   ];
 
@@ -185,17 +178,26 @@ const StyledServices = styled.section`
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
+    justify-content: center;
     
     @media (min-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
     
     @media (min-width: 1024px) {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 
   .service-card {
     background-color: var(--light);

@@ -4,15 +4,23 @@ import SectionHeading from './SectionHeading';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaEye, FaKiss, FaLeaf, FaSpa, FaArrowRight } from 'react-icons/fa';
 
+import firstImage from "../assets/first.jpg";
+import secondImage from "../assets/second.jpg";
+import nail from "../assets/nail.jpg"
+import eye from "../assets/eye.JPG"
+import lip from "../assets/lip.JPG"
+import nail2 from "../assets/nail2.JPG"
+import brow from "../assets/brow.JPG"
+
 // Portfolio data with before/after transformations
 const portfolioData = [
   {
     id: 1,
-    image: 'https://lh3.googleusercontent.com/p/AF1QipMI2gmAvv9EvFPz6qtnEFYLnUQ91zUPBJhg-jo=s1360-w1360-h1020-rw',
+    image: eye,
   },
   {
     id: 2,
-    image: 'https://lh3.googleusercontent.com/p/AF1QipMDpuKkT-e3YcBgMAPD20zAejwC39rQzPNl73I=s1360-w1360-h1020-rw',
+    image: secondImage,
   },
   {
     id: 3,
@@ -20,15 +28,23 @@ const portfolioData = [
   },
   {
     id: 4,
-    image: 'https://lh3.googleusercontent.com/p/AF1QipMvwLeB7-b6YTTcXNrgyxJ4swL_469zC_b2-E4=s1360-w1360-h1020-rw',
+    image: lip,
   },
   {
     id: 5,
-    image: 'https://lh3.googleusercontent.com/p/AF1QipP72jyGrFU8d3-tvoe9d3Zib95xCci2gQD2cac=s1360-w1360-h1020-rw',
+    image: firstImage,
   },
   {
     id: 6,
-    image: 'https://www.personail.com/cdn/shop/products/personail-nail-wraps-henna-15011547709495.jpg?v=1739444446',
+    image: brow,
+  },
+  {
+    id: 7,
+    image: nail2,
+  },
+  {
+    id: 8,
+    image: nail,
   },
 ];
 
@@ -107,19 +123,24 @@ const FilterButton = styled.button`
 
 const PortfolioGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns for desktop */
+  gap: 2rem; /* Default gap for 4 columns */
   margin-top: 2rem;
   
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+  @media (max-width: 1024px) { /* For smaller desktops and large tablets */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; /* Adjusted gap for 3 columns */
   }
   
-  @media (max-width: 480px) {
+  @media (max-width: 768px) { /* For tablets */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem; /* Consistent gap for 2 columns */
+  }
+  
+  @media (max-width: 480px) { /* For mobile phones */
     grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 350px;
+    gap: 1.5rem; /* Gap for single column items */
+    max-width: 350px; /* Constrain width of the single column grid */
     margin-left: auto;
     margin-right: auto;
   }
@@ -283,8 +304,8 @@ const WorksSection = () => {
       <div className="container">
         <SectionHeading 
           subtitle="Our Portfolio" 
-          title="Client Transformation Gallery" 
-          description="Browse our collection of real client transformations showcasing the beauty and precision of our permanent makeup artistry"
+          title="Our Clients" 
+          description="Browse our portfolio of clients and their transformations"
           align="center"
         />
         

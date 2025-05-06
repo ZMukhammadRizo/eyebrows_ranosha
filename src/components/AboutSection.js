@@ -14,8 +14,8 @@ const AboutSection = () => {
     },
     {
       icon: <FaUsers />,
-      title: '1000+ Procedures',
-      description: 'Over the years, we have performed more than 1000+ permanent makeup procedures, earning the trust and recognition of our clients.',
+      title: '10,000+ Procedures',
+      description: 'Over the years, we have performed more than 10,000+ permanent makeup procedures, earning the trust and recognition of our clients.',
     },
   ];
 
