@@ -43,11 +43,10 @@ const Footer = () => {
           <FooterServices>
             <FooterHeading>Our Services</FooterHeading>
             <FooterLinks>
-              <FooterLinkItem>Eyebrow Shaping</FooterLinkItem>
-              <FooterLinkItem>Eyebrow Tinting</FooterLinkItem>
-              <FooterLinkItem>Eyebrow Lamination</FooterLinkItem>
-              <FooterLinkItem>Microblading</FooterLinkItem>
-              <FooterLinkItem>Individual Consultations</FooterLinkItem>
+              <FooterLinkItem>Permanent eyebrow makeup</FooterLinkItem>
+              <FooterLinkItem>Permanent lip makeup
+              </FooterLinkItem>
+              <FooterLinkItem>Henna nail art</FooterLinkItem>
             </FooterLinks>
           </FooterServices>
           

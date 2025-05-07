@@ -51,7 +51,9 @@ const HeroSection = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 1.1 }}
           >
-            Beauty Salon Ranosha — Permanent Makeup & Henna Studio in Torrance, CA We specialize in natural-looking permanent makeup for brows and lips, as well as organic black henna for nails. With 6+ years of experience, we provide a halal, safe, and relaxing beauty experience. Located in sunny Los Angeles.
+            Ranosha Beauty Salon — Permanent Makeup & Henna Studio in Torrance, CA
+
+Discover the art of timeless beauty at Ranosha — your destination for natural-looking permanent makeup and organic henna in the heart of Torrance.
           </motion.p>
           
           <motion.div 

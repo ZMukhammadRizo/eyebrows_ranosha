@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaCalendarCheck, FaWhatsapp } from 'react-icons/fa';
 import SectionHeading from './SectionHeading';
+import BookingForm from './BookingForm';
 
 // Add a high-quality image of an eyebrow master
 // const masterImage = 'https://images.unsplash.com/photo-1614583225154-5fcdda07019e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1336&q=80';
@@ -164,88 +165,7 @@ const ContactSection = () => {
             viewport={{ once: true }}
             style={{ width: '100%' }}
           >            
-            <FormTitle>Book Your Appointment</FormTitle>
-            <FormSubtitle>Complete the form below and we'll confirm your appointment via WhatsApp.</FormSubtitle>
-            
-            <ContactForm onSubmit={handleSubmit}>
-              <FormGroup>
-                <FormLabel htmlFor="name">Full Name</FormLabel>
-                <FormInput
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </FormGroup>
-              
-              <FormRow>
-                <FormGroup>
-                  <FormLabel htmlFor="email">Email</FormLabel>
-                  <FormInput
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <FormLabel htmlFor="phone">Phone (for WhatsApp)</FormLabel>
-                  <FormInput
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormGroup>
-              </FormRow>
-              
-              <FormGroup>
-                <FormLabel htmlFor="service">Service</FormLabel>
-                <FormInput
-                  as="select"
-                  id="service"
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Select a service</option>
-                  <option value="Permanent eyebrow makeup">Permanent eyebrow makeup</option>
-                  <option value="Permanent lip makeup">Permanent lip makeup</option>
-                  <option value="Henna nail art">Henna nail art</option>
-                </FormInput>
-              </FormGroup>
-              
-              <FormGroup>
-                <FormLabel htmlFor="message">Message (Optional)</FormLabel>
-                <FormTextarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell us about your preferences or ask any questions"
-                />
-              </FormGroup>
-              
-              {submitStatus === 'success' && (
-                <SuccessMessage>
-                  Opening WhatsApp to send your booking request! Please complete the process there.
-                </SuccessMessage>
-              )}
-              
-              <SubmitButton 
-                type="submit" 
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Preparing...' : 'Send via WhatsApp'}
-              </SubmitButton>
-            </ContactForm>
+            <BookingForm />
           </motion.div>
         </ContentWrapper>
       </div>
@@ -508,4 +428,4 @@ const ErrorMessage = styled.div`
   margin-bottom: 1rem;
 `;
 
-export default ContactSection; 
+export default ContactSection;

@@ -121,6 +121,12 @@ const ServicesSection = () => {
                 className="button-outline service-button"
                 whileHover={{ scale: 1.05, boxShadow: "0 5px 15px rgba(198, 156, 109, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
+x                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
               >
                 Book Consultation
               </motion.button>
